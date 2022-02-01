@@ -20,23 +20,24 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: Dimensions.get("screen").height - 110,
     // backgroundColor: "#eee",
-    paddingHorizontal: 20,
     paddingTop: 10
   },
   location: {
     fontSize: 18,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    paddingHorizontal: 20,
   },
   country: {
     fontSize: 14,
     fontWeight: "500"
   },
   weatherCard: {
-    width: "100%",
+    width: Dimensions.get("screen").width - 40,
     height: 350,
     borderRadius: 10,
     backgroundColor: "#6541ff",
-    marginTop: 20
+    marginTop: 20,
+    marginHorizontal: 20,
   },
   weatherCardTop: {
     justifyContent: "flex-start",
@@ -98,6 +99,39 @@ export const styles = StyleSheet.create({
   weatherList: {
     width: "100%",
     height: 150,
-    color: "#686868"
+    color: "#686868",
+    // backgroundColor: "red",
+    marginTop: 20,
+  },
+  weatherListHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  weatherNext: {
+    flexDirection: "row",
+    alignItems: 'center'
+  },
+  weatherListItems: {
+    width: Dimensions.get("screen").width,
+    // paddingHorizontal: 20,
+    marginTop: 20,
+  },
+  weatherTemperatureItem: {
+    height: 80,
+    borderRadius: 10,
+    marginHorizontal: 5,
+    borderColor: "#eee",
+    borderWidth: 1,
+    paddingHorizontal: 7,
+    justifyContent: "space-around"
+  },
+  weatherTemperatureItemText: {
+    fontSize: 12,
+    color: "#696969"
+  },
+  weatherTemperatureItemTextActive: {
+    color: "#cfffff",
   }
 });

@@ -7,29 +7,11 @@ import {
   Pressable,
 } from 'react-native'
 import { Icon } from 'react-native-elements'
+import TemperatureItem from '../../components/TemperatureItem'
+import WeatherItem from '../../components/WeatherItem'
 import { styles } from './style'
 
-const WeatherItem = ({ style, type, value, iconName }) => {
-  const otherStyle = style ? (
-    { borderRightWidth:1 }
-  ):null
 
-  return (
-    <View style={{ ...styles.weatherItem, ...otherStyle }}>
-      <Icon 
-        name={iconName}
-        type="ionicon"
-        color="#cfe5ff"
-        size={25}
-      />
-                
-      <View style={styles.weatherItemInfo}>
-        <Text style={styles.weatherItemType}>{ type }</Text>
-        <Text style={styles.weatherItemValue}>{ value }</Text>
-      </View>
-    </View>
-  )
-}
 
 const HomeScreen = () => {
   return (
@@ -49,7 +31,7 @@ const HomeScreen = () => {
               source={require('../../assets/icons/cloudy-day.png')}
               style={styles.weatherImage}
             />
-            <Text style={styles.weatherType}>Heavy Rain</Text>
+            <Text style={styles.weatherType}>Forte Pluie</Text>
             <Text style={styles.weatherDate}>Dimanche, 02 Oct.</Text>
 
             <Text style={styles.weatherTemperature}>24{`\u2103`}</Text>
@@ -87,7 +69,31 @@ const HomeScreen = () => {
           </View>
         </View>
 
-        <View style={styles.weatherList}></View>
+        <View style={styles.weatherList}>
+          <View style={styles.weatherListHeader}>
+            <Text style={{ fontWeight: "bold" }}>Aujourd'hui</Text>
+            <View style={styles.weatherNext}>
+              <Text style={{ color: "#6f6f6f", marginRight: 5 }}>7 Jours Suivant</Text>
+              <Icon
+                name="chevron-forward"
+                type="ionicon"
+                color="#6f6f6f"
+                size={20}
+              />
+            </View>
+          </View>
+
+          <ScrollView style={styles.weatherListItems} horizontal={true}>
+            <TemperatureItem active />
+            <TemperatureItem />
+            <TemperatureItem />
+            <TemperatureItem />
+            <TemperatureItem />
+            <TemperatureItem />
+            <TemperatureItem />
+            <TemperatureItem />
+          </ScrollView>
+        </View>
       </ScrollView>
     </View>
   )
