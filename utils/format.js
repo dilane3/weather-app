@@ -1,3 +1,5 @@
+import { COUNTRY } from "./Allcountries"
+
 export const formatTemperature = (temp) => {
   return Math.floor(temp - 273.15)
 }
@@ -50,4 +52,18 @@ export const formatDate = (date, type = "partial") => {
     return `${time.getDate()} ${months[time.getMonth()]}`
   }
 
+}
+
+export const formatCountry = (code) => {
+  let originalCountryName = ""
+
+  for (let country of COUNTRY) {
+    if (country.alpha2Code === code) {
+      originalCountryName = country.translations?.fr
+
+      break
+    }
+  }
+
+  return originalCountryName
 }

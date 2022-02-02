@@ -6,6 +6,8 @@ import ListScreen from '../screens/list/ListScreen'
 import { styles } from '../screens/home/style'
 import { useContext } from 'react'
 import weatherContext from '../data-manager/context/weatherContext'
+import SearchScreen from '../screens/search/searchScreen'
+import { formatCountry } from '../utils/format'
 
 const Stack = createNativeStackNavigator()
 
@@ -30,13 +32,13 @@ const AppStackNavigation = () => {
             headerTitle: () => {
               return (
                 <Text 
-                  style={{...styles.location, color:"#cfe5ff"}}
+                  style={{...styles.location, color: "#fff"}}
                 >
-                  { name }, <Text style={styles.country}>{ country }</Text>
+                  { name }, <Text style={styles.country}>{ formatCountry(country) }</Text>
                 </Text>
               )
             },
-            headerTintColor: "#cfe5ff",
+            headerTintColor: "#fff",
             headerStyle: {
               backgroundColor: "#6541ff"
             },
@@ -44,6 +46,18 @@ const AppStackNavigation = () => {
               color: "#fff"
             },
             headerShadowVisible: false
+          }}
+        />
+        <Stack.Screen 
+          name="Search"
+          component={SearchScreen}
+          options={{
+            title: "Recherche",
+            headerTintColor: "#fff",
+            headerShadowVisible: false,
+            headerStyle: {
+              backgroundColor: "#6541ff"
+            },
           }}
         />
       </Stack.Navigator>

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: 80,
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "center",
     paddingTop: 25,
     paddingHorizontal: 20
@@ -124,7 +124,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 5,
     borderColor: "#eee",
     borderWidth: 1,
-    paddingHorizontal: 7,
+    paddingHorizontal: 10,
     justifyContent: "space-around"
   },
   weatherTemperatureItemText: {

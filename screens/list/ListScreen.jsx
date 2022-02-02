@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import {
   View,
   FlatList,
-  Text
+  Text,
+  StatusBar
 } from 'react-native'
 import WeatherItem from "../../components/WeatherItem";
 import weatherContext from "../../data-manager/context/weatherContext";
@@ -27,6 +28,9 @@ const ListScreen = ({ navigation }) => {
           />
         )}
       />
+
+
+      <StatusBar barStyle="light-content" />
     </View>
   )
 }

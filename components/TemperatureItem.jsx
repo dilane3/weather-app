@@ -29,7 +29,7 @@ const TemperatureItem = ({ active, data, index }) => {
         size={20}
       />
 
-      <Text style={active ? {...styles.weatherTemperatureItemText, color: "#cfffff"} : styles.weatherTemperatureItemText}>{ `${formatTemperature(temperature)}\u2103` }</Text>
+      <Text style={active ? {...styles.weatherTemperatureItemText, color: "#cfffff"} : styles.weatherTemperatureItemText}>{ `${formatTemperature(temperature)}\u00b0` }</Text>
     </TouchableOpacity>
   )
 }

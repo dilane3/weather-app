@@ -7,13 +7,14 @@ import {
   Pressable,
   TouchableOpacity,
   ActivityIndicator,
+  StatusBar,
 } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { useLoadData } from '../../api/loadData'
 import TemperatureItem from '../../components/TemperatureItem'
 import WeatherType from '../../components/WeatherType'
 import weatherContext from '../../data-manager/context/weatherContext'
-import { formatDate, formatTemperature } from '../../utils/format'
+import { formatCountry, formatDate, formatTemperature } from '../../utils/format'
 import { styles } from './style'
 
 const HomeScreen = ({ navigation }) => {
@@ -47,10 +48,14 @@ const HomeScreen = ({ navigation }) => {
               <Pressable onPress={() => navigation.navigate("List")}>
                 <Icon name="menu-outline" type="ionicon" color="#303030" />
               </Pressable>
+
+              <Pressable onPress={() => navigation.navigate("Search")}>
+                <Icon name="search-outline" type="ionicon" color="#303030" />
+              </Pressable>
             </View>
 
             <ScrollView style={styles.bodyContainer}>
-              <Text style={{...styles.location, fontFamily: "Poppins-Black"}}>{ name }, <Text style={styles.country}>{ country }</Text></Text>
+              <Text style={{...styles.location, fontFamily: "Poppins-Black"}}>{ name }, <Text style={styles.country}>{ formatCountry(country) }</Text></Text>
 
               <View style={styles.weatherCard}>
                 <View style={styles.weatherCardTop}>
@@ -61,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
                   <Text style={styles.weatherType}>Forte Pluie</Text>
                   <Text style={styles.weatherDate}>{ formatDate(list[currentWeatherDay].date, "full") }</Text>
 
-                  <Text style={styles.weatherTemperature}>{`${formatTemperature(list[currentWeatherDay].temperature.average)}\u2103`}</Text>
+                  <Text style={styles.weatherTemperature}>{`${formatTemperature(list[currentWeatherDay].temperature.average)}\u00b0`}</Text>
                 </View>
                 <View style={styles.weatherCardBottom}>
                   <View style={styles.weatherItems}>
@@ -76,7 +81,7 @@ const HomeScreen = ({ navigation }) => {
                     <WeatherType
                       iconName="thermometer"
                       type="TEMPERATURE"
-                      value={`${formatTemperature(list[currentWeatherDay].temperature.average)}\u2103`}
+                      value={`${formatTemperature(list[currentWeatherDay].temperature.average)}\u00b0`}
                     />
                   </View>
 
@@ -129,10 +134,23 @@ const HomeScreen = ({ navigation }) => {
                 </ScrollView>
               </View>
             </ScrollView>
+
+            <StatusBar barStyle="dark-content" />
           </View>
         ):(
-          <View style={styles.loading}>
-            <ActivityIndicator size="large" color="#6541ff" />
+          <View style={{...styles.loading, backgroundColor: "#6541ff"}}>
+            <Image 
+              source={require("../../assets/icon.png")}
+              style={{
+                width: 100,
+                height: 100,
+                borderRadius: 10,
+                marginBottom: 20
+              }}
+            />
+            <ActivityIndicator size="large" color="#fff" />
+
+            <StatusBar barStyle="light-content" />
           </View>
         )
       }

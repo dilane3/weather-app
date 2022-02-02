@@ -40,7 +40,7 @@ const WeatherItem = ({ navigation, data, index }) => {
 
       <View style={styles.weatherItemRight}>
         <Text style={styles.weatherItemFirst}>{ formatTemperature(data.temperature.average) }</Text>
-        <Text style={styles.weatherItemSecond}>{` / ${ formatTemperature(data.temperature.average_max) }\u2103`}</Text>
+        <Text style={styles.weatherItemSecond}>{` / ${ formatTemperature(data.temperature.average_max) }\u00b0`}</Text>
       </View>
     </TouchableOpacity>
   )
