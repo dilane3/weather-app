@@ -5,19 +5,20 @@ import {
   Text,
   Image,
   Pressable,
+  TouchableOpacity,
 } from 'react-native'
 import { Icon } from 'react-native-elements'
 import TemperatureItem from '../../components/TemperatureItem'
-import WeatherItem from '../../components/WeatherItem'
+import WeatherType from '../../components/WeatherType'
 import { styles } from './style'
 
 
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable>
+        <Pressable onPress={() => navigation.navigate("List")}>
           <Icon name="menu-outline" type="ionicon" color="#303030" />
         </Pressable>
       </View>
@@ -38,14 +39,14 @@ const HomeScreen = () => {
           </View>
           <View style={styles.weatherCardBottom}>
             <View style={styles.weatherItems}>
-              <WeatherItem
+              <WeatherType
                 iconName="thermometer"
                 type="VENT"
                 value="19.2km/j"
                 style={true}
               />
 
-              <WeatherItem
+              <WeatherType
                 iconName="thermometer"
                 type="TEMPERATURE"
                 value={`25\u2103`}
@@ -53,14 +54,14 @@ const HomeScreen = () => {
             </View>
 
             <View style={styles.weatherItems}>
-              <WeatherItem
+              <WeatherType
                 iconName="water"
                 type="HUMIDITE"
                 value="72cm"
                 style={true}
               />
 
-              <WeatherItem
+              <WeatherType
                 iconName="pulse"
                 type="PRESSION"
                 value="1014mbar"
@@ -73,7 +74,9 @@ const HomeScreen = () => {
           <View style={styles.weatherListHeader}>
             <Text style={{ fontWeight: "bold" }}>Aujourd'hui</Text>
             <View style={styles.weatherNext}>
-              <Text style={{ color: "#6f6f6f", marginRight: 5 }}>7 Jours Suivant</Text>
+              <TouchableOpacity activeOpacity={.7} onPress={() => navigation.navigate("List")}>
+                <Text style={{ color: "#6f6f6f", marginRight: 5 }}>7 Jours Suivant</Text>
+              </TouchableOpacity>
               <Icon
                 name="chevron-forward"
                 type="ionicon"
