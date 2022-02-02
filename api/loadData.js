@@ -7,18 +7,14 @@ const instance = axios.create({
 instance.defaults.headers.common["x-rapidapi-host"] = 'community-open-weather-map.p.rapidapi.com'
 instance.defaults.headers.common["x-rapidapi-key"] = 'e9a862c36emshdbebdb5904aa26cp1a9fb5jsn46af02950471'
 
-const useLoadData = (city) => {
-  const [weather, setWeather] = useState(null)
-
+const useLoadData = (city, addWeather) => {
   useEffect(async () => {
     const { data, error } = await loadData(city)
 
     if (data) {
-      setWeather(data)
+      addWeather(data)
     }
   }, [])
-
-  return [weather]
 }
 
 const loadData = async (city) => {

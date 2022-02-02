@@ -2,8 +2,11 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Icon } from "react-native-elements";
 import { styles } from "../screens/home/style";
+import { formatTemperature } from "../utils/formatTemperature";
 
-const TemperatureItem = ({ active }) => {
+const TemperatureItem = ({ active, data }) => {
+  const temperature = data.temperature.average
+
   return (
     <View style={active ? {...styles.weatherTemperatureItem, backgroundColor: "#6541ff", borderWidth: 0} : styles.weatherTemperatureItem}>
       <Icon 
@@ -13,7 +16,7 @@ const TemperatureItem = ({ active }) => {
         size={20}
       />
 
-      <Text style={active ? {...styles.weatherTemperatureItemText, color: "#cfffff"} : styles.weatherTemperatureItemText}>{ `22\u2103` }</Text>
+      <Text style={active ? {...styles.weatherTemperatureItemText, color: "#cfffff"} : styles.weatherTemperatureItemText}>{ `${formatTemperature(temperature)}\u2103` }</Text>
     </View>
   )
 }

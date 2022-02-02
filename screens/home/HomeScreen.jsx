@@ -12,11 +12,20 @@ import { useLoadData } from '../../api/loadData'
 import TemperatureItem from '../../components/TemperatureItem'
 import WeatherType from '../../components/WeatherType'
 import weatherContext from '../../data-manager/context/weatherContext'
+import { formatTemperature } from '../../utils/formatTemperature'
 import { styles } from './style'
 
 const HomeScreen = ({ navigation }) => {
-  const { weather: currentWeather } = useContext(weatherContext)
-  const [ weather ] = useLoadData("Douala")
+  const { weather: currentWeather, addWeather } = useContext(weatherContext)
+  useLoadData("Douala", addWeather)
+
+  const {
+    city: {
+      name,
+      country
+    },
+    list
+  } = currentWeather
 
   return (
     <View style={styles.container}>
@@ -27,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
 
       <ScrollView style={styles.bodyContainer}>
-        <Text style={{...styles.location, fontFamily: "Poppins-Black"}}>{ currentWeather.city.name }, <Text style={styles.country}>Cameroun</Text></Text>
+        <Text style={{...styles.location, fontFamily: "Poppins-Black"}}>{ name }, <Text style={styles.country}>{ country }</Text></Text>
 
         <View style={styles.weatherCard}>
           <View style={styles.weatherCardTop}>
@@ -38,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.weatherType}>Forte Pluie</Text>
             <Text style={styles.weatherDate}>Dimanche, 02 Oct.</Text>
 
-            <Text style={styles.weatherTemperature}>24{`\u2103`}</Text>
+            <Text style={styles.weatherTemperature}>{`${formatTemperature(list[0].temperature.average)}\u2103`}</Text>
           </View>
           <View style={styles.weatherCardBottom}>
             <View style={styles.weatherItems}>
@@ -52,7 +61,7 @@ const HomeScreen = ({ navigation }) => {
               <WeatherType
                 iconName="thermometer"
                 type="TEMPERATURE"
-                value={`25\u2103`}
+                value={`${formatTemperature(list[0].temperature.average)}\u2103`}
               />
             </View>
 
@@ -78,7 +87,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={{ fontWeight: "bold" }}>Aujourd'hui</Text>
             <View style={styles.weatherNext}>
               <TouchableOpacity activeOpacity={.7} onPress={() => navigation.navigate("List")}>
-                <Text style={{ color: "#6f6f6f", marginRight: 5 }}>7 Jours Suivant</Text>
+                <Text style={{ color: "#6f6f6f", marginRight: 5 }}>{ list.slice(11).length } Jours Suivant</Text>
               </TouchableOpacity>
               <Icon
                 name="chevron-forward"
@@ -90,14 +99,9 @@ const HomeScreen = ({ navigation }) => {
           </View>
 
           <ScrollView style={styles.weatherListItems} horizontal={true}>
-            <TemperatureItem active />
-            <TemperatureItem />
-            <TemperatureItem />
-            <TemperatureItem />
-            <TemperatureItem />
-            <TemperatureItem />
-            <TemperatureItem />
-            <TemperatureItem />
+            {
+              list.slice(0, 10).map((temp, index) => <TemperatureItem key={index} data={temp} />)
+            }
           </ScrollView>
         </View>
       </ScrollView>
