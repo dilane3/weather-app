@@ -133,5 +133,12 @@ export const styles = StyleSheet.create({
   },
   weatherTemperatureItemTextActive: {
     color: "#cfffff",
+  },
+  loading: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center"
   }
 });

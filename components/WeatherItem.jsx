@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
-  Text
+  Text,
+  TouchableOpacity
 } from 'react-native'
 import { Icon } from "react-native-elements";
+import weatherContext from "../data-manager/context/weatherContext";
 import { styles } from "../screens/list/style";
+import { formatDate, formatTemperature } from "../utils/format";
 
-const WeatherItem = () => {
+const WeatherItem = ({ navigation, data, index }) => {
+  const { changeWeatherDay } = useContext(weatherContext)
+
+  const handleSelectWeather = () => {
+    changeWeatherDay(index)
+
+    navigation.goBack()
+  }
+
   return (
-    <View style={styles.weatherItem}>
+    <TouchableOpacity 
+      activeOpacity={.7} 
+      style={styles.weatherItem}
+      onPress={handleSelectWeather}
+    >
       <View style={styles.weatherItemLeft}>
         <Icon 
           name="cloudy"
@@ -18,16 +33,16 @@ const WeatherItem = () => {
         />
 
         <View style={styles.weatherItemTime}>
-          <Text style={styles.weatherItemFirst}>Lundi,</Text>
-          <Text style={styles.weatherItemSecond}>3 Oct.</Text>
+          <Text style={styles.weatherItemFirst}>{ `${formatDate(data.date, "only_day")}, ` }</Text>
+          <Text style={styles.weatherItemSecond}>{ formatDate(data.date, "only_date_month") }</Text>
         </View>
       </View>
 
       <View style={styles.weatherItemRight}>
-        <Text style={styles.weatherItemFirst}>32</Text>
-        <Text style={styles.weatherItemSecond}>{` / 33\u2103`}</Text>
+        <Text style={styles.weatherItemFirst}>{ formatTemperature(data.temperature.average) }</Text>
+        <Text style={styles.weatherItemSecond}>{` / ${ formatTemperature(data.temperature.average_max) }\u2103`}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

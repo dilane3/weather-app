@@ -1,4 +1,4 @@
-import { ADD_WEATHER } from "./type"
+import { ADD_WEATHER, CHANGE_DAY } from "./type"
 
 const weatherReducer = (state, action) => {
   switch (action.type) {

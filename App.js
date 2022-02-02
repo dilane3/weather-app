@@ -20,11 +20,14 @@ export default function App() {
 
   // definition of the state
   const [weather, dispatch] = useReducer(weatherReducer, initialState)
+  const [weatherDay, setWeatherDay] = useState(-1)
 
   // context value
   const weatherContextValue = {
     weather,
-    addWeather: (weather) => dispatch(addWeather(weather))
+    currentWeatherDay: weatherDay,
+    addWeather: (weather) => dispatch(addWeather(weather)),
+    changeWeatherDay: (day) => setWeatherDay(day)
   }
 
   return (

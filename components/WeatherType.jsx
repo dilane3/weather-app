@@ -3,7 +3,7 @@ import { View, Text } from "react-native"
 import { Icon } from "react-native-elements"
 import { styles } from "../screens/home/style"
 
-const WeatherType = ({ style, type, value, iconName }) => {
+const WeatherType = ({ style, type, value, iconName, typeIcon }) => {
   const otherStyle = style ? (
     { borderRightWidth:1 }
   ):null
@@ -12,7 +12,7 @@ const WeatherType = ({ style, type, value, iconName }) => {
     <View style={{ ...styles.weatherItem, ...otherStyle }}>
       <Icon 
         name={iconName}
-        type="ionicon"
+        type={typeIcon ? typeIcon: "ionicon"}
         color="#cfe5ff"
         size={25}
       />

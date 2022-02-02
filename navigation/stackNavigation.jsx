@@ -4,10 +4,15 @@ import { Text } from 'react-native'
 import HomeScreen from '../screens/home/HomeScreen'
 import ListScreen from '../screens/list/ListScreen'
 import { styles } from '../screens/home/style'
+import { useContext } from 'react'
+import weatherContext from '../data-manager/context/weatherContext'
 
 const Stack = createNativeStackNavigator()
 
 const AppStackNavigation = () => {
+  const { weather } = useContext(weatherContext)
+  const { city: { name, country } } = weather
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -27,7 +32,7 @@ const AppStackNavigation = () => {
                 <Text 
                   style={{...styles.location, color:"#cfe5ff"}}
                 >
-                  Yaounde, <Text style={styles.country}>Cameroun</Text>
+                  { name }, <Text style={styles.country}>{ country }</Text>
                 </Text>
               )
             },

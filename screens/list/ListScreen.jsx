@@ -1,27 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
   FlatList,
-  Text,
-  ScrollView
+  Text
 } from 'react-native'
 import WeatherItem from "../../components/WeatherItem";
+import weatherContext from "../../data-manager/context/weatherContext";
 import { styles } from "./style";
 
-const ListScreen = () => {
+const ListScreen = ({ navigation }) => {
+  const { weather } = useContext(weatherContext)
+  const {list} = weather
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>7 Jours Suivant</Text>
+      <Text style={styles.title}>Meteo sur {list.length} Jours</Text>
 
-      <ScrollView style={styles.weatherList}>
-        <WeatherItem />
-        <WeatherItem />
-        <WeatherItem />
-        <WeatherItem />
-        <WeatherItem />
-        <WeatherItem />
-        <WeatherItem />
-      </ScrollView>
+      <FlatList style={styles.weatherList}
+        data={list}
+        keyExtractor={(item, index) => index}
+        renderItem={({item, index}) => (
+          <WeatherItem 
+            index={index} 
+            data={item} 
+            navigation={navigation}
+          />
+        )}
+      />
     </View>
   )
 }

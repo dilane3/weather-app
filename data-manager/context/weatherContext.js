@@ -16,7 +16,9 @@ const weatherContext = React.createContext({
       }
     ]
   },
-  addWeather: (weather) => {} 
+  currentWeatherDay: -1,
+  addWeather: (weather) => {},
+  changeWeatherDay: (day) => {} 
 })
 
 export default weatherContext
