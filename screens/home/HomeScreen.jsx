@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
   ScrollView,
   View,
@@ -8,13 +8,16 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { Icon } from 'react-native-elements'
+import { useLoadData } from '../../api/loadData'
 import TemperatureItem from '../../components/TemperatureItem'
 import WeatherType from '../../components/WeatherType'
+import weatherContext from '../../data-manager/context/weatherContext'
 import { styles } from './style'
 
-
-
 const HomeScreen = ({ navigation }) => {
+  const { weather: currentWeather } = useContext(weatherContext)
+  const [ weather ] = useLoadData("Douala")
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -24,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
 
       <ScrollView style={styles.bodyContainer}>
-        <Text style={{...styles.location, fontFamily: "Poppins-Black"}}>Yaounde, <Text style={styles.country}>Cameroun</Text></Text>
+        <Text style={{...styles.location, fontFamily: "Poppins-Black"}}>{ currentWeather.city.name }, <Text style={styles.country}>Cameroun</Text></Text>
 
         <View style={styles.weatherCard}>
           <View style={styles.weatherCardTop}>
