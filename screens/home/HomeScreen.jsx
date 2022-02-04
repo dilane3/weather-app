@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   ScrollView,
   View,
@@ -16,6 +16,7 @@ import WeatherType from '../../components/WeatherType'
 import weatherContext from '../../data-manager/context/weatherContext'
 import { formatCountry, formatDate, formatTemperature } from '../../utils/format'
 import { styles } from './style'
+import { getLocation } from '../../utils/getPermission'
 
 const HomeScreen = ({ navigation }) => {
   // Get data from global state
@@ -26,10 +27,20 @@ const HomeScreen = ({ navigation }) => {
     changeWeatherDay 
   } = useContext(weatherContext)
 
-  console.log(currentWeatherDay)
+  // Definition of the local state
+  const [city, setCity] = useState(null)
+
+  // Get current city
+  useEffect(async () => {
+    const { data, error } = await getLocation()
+  
+    if (data) {
+      setCity(data[0].city)
+    }
+  }, [])
 
   // Load weather from the server
-  useLoadData("Yaounde", addWeather, changeWeatherDay)
+  useLoadData(city, addWeather, changeWeatherDay)
 
   const {
     city: {
@@ -42,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <>
       {
-        currentWeatherDay > -1 ? (
+        currentWeatherDay > -1 && city ? (
           <View style={styles.container}>
             <View style={styles.header}>
               <Pressable onPress={() => navigation.navigate("List")}>

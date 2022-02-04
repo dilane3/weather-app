@@ -6,9 +6,8 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#6541ff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,7 +16,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dilane3.weatherlite"
     },
     "android": {
       "adaptiveIcon": {
