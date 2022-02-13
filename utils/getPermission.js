@@ -1,38 +1,4 @@
-import React, { useEffect, useState } from "react";
 import * as Location from 'expo-location'
-
-const useGetLocation = () => {
-  const [errorMsg, setErrorMsg] = useState(null)
-  const [region, setRegion] = useState(null)
-
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-
-      const { coords: {latitude, longitude} } = location
-
-      Location.setGoogleApiKey()
-
-      let regionName = await Location.reverseGeocodeAsync({
-        latitude,
-        longitude
-      });
-
-      setRegion(regionName);
-
-      return;
-    })();
-  }, [])
-
-  return [region, errorMsg]
-}
 
 const getLocation = async () => {
   let { status } = await Location.requestForegroundPermissionsAsync();
@@ -41,18 +7,31 @@ const getLocation = async () => {
     return {error: "Permission to access location was denied"};
   }
 
-  let location = await Location.getCurrentPositionAsync({});
+  try {
+    let location = await Location.getCurrentPositionAsync();
 
-  const { coords: {latitude, longitude} } = location
+    const { coords: {latitude, longitude} } = location
 
-  Location.setGoogleApiKey()
+    Location.setGoogleApiKey()
 
-  let regionName = await Location.reverseGeocodeAsync({
-    latitude,
-    longitude
-  });
+    try {
+      let regionName = await Location.reverseGeocodeAsync({
+        latitude,
+        longitude
+      });
+      console.log(regionName)
+  
+      return {data: regionName};
+    } catch (err) {
+      console.log(err)
 
-  return {data: regionName};
+      return {data: null};
+    }
+  } catch (err) {
+    console.log(err)
+
+    return {data: null};
+  }
 }
 
 export { getLocation }

@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Text } from 'react-native'
 import HomeScreen from '../screens/home/HomeScreen'
 import ListScreen from '../screens/list/ListScreen'
+import ErrorScreen from '../screens/error/ErrorScreen'
 import { styles } from '../screens/home/style'
 import { useContext } from 'react'
 import weatherContext from '../data-manager/context/weatherContext'
@@ -58,6 +59,13 @@ const AppStackNavigation = () => {
             headerStyle: {
               backgroundColor: "#6541ff"
             },
+          }}
+        />
+        <Stack.Screen 
+          name="Error"
+          component={ErrorScreen}
+          options={{
+            headerShown: false
           }}
         />
       </Stack.Navigator>

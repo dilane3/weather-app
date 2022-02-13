@@ -3,23 +3,34 @@ import { useEffect, useState } from "react"
 import { API_URI, API_KEY } from '../utils/config'
 
 const instance = axios.create({
-  baseURL: "https://community-open-weather-map.p.rapidapi.com"
+  baseURL: "https://community-open-weather-map.p.rapidapi.com",
+  timeout: 10000
 })
 instance.defaults.headers.common["x-rapidapi-host"] = API_URI
 instance.defaults.headers.common["x-rapidapi-key"] = API_KEY
-const useLoadData = (city, addWeather, changeWeatherDay) => {
+
+const useLoadData = (city, addWeather, changeWeatherDay, load) => {
   useEffect(async () => {
-    if (city) {
-      const { data, error } = await loadData(city)
-  
-      if (data) {
-        addWeather(data)
-        changeWeatherDay(0)
-      } else {
+    if (city && load) {
+      try {
+        const { data } = await loadData(city)
+        console.log({data})
+
+        if (data) {
+          addWeather(data)
+          changeWeatherDay(0)
+        } else {
+          changeWeatherDay(-1)
+        }
+      } catch (err) {
+        console.log(err)
+
         changeWeatherDay(-1)
       }
+    } else if (!load) {
+      changeWeatherDay(-1)
     }
-  }, [city])
+  }, [city, load])
 }
 
 const loadData = async (city) => {

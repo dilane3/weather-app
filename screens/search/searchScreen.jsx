@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -11,29 +11,42 @@ import { Icon } from "react-native-elements";
 import styles from "./style";
 import WeatherResult from "../../components/WeatherResult";
 import { loadData } from "../../api/loadData";
+import networkContext from "../../data-manager/context/networkContext";
 
 const SearchScreen = ({ navigation }) => {
+  // Definition of local state
   const [loading, setLoading] = useState(false)
   const [weather, setWeather] = useState(null)
   const [city, setCity] = useState("")
   const [hasAlreadyFetch, setHasAlreadyFetch] = useState(false)
 
+  // Get data from global state
+  const { isConnected, isInternetReachable, updateNetworkStatus } = useContext(networkContext)
+
   const handleSearchWeather = async () => {
-    if (city.length > 0) {
-      // Display the loader
-      setLoading(true)
+    const { data } = await updateNetworkStatus()
 
-      // Fetch data from the server
-      const { data, error } = await loadData(city)
+    console.log(data)
 
-      // Mask the loader after fetching data
-      setLoading(false)
-      setHasAlreadyFetch(true)
-
-      if (data) {
-        setWeather(data)
-
-        setCity("")
+    if (!data) {
+      navigation.navigate("Error")
+    } else {
+      if (city.length > 0) {
+        // Display the loader
+        setLoading(true)
+  
+        // Fetch data from the server
+        const { data, error } = await loadData(city)
+  
+        // Mask the loader after fetching data
+        setLoading(false)
+        setHasAlreadyFetch(true)
+  
+        if (data) {
+          setWeather(data)
+  
+          setCity("")
+        }
       }
     }
   }

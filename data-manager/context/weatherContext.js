@@ -16,7 +16,7 @@ const weatherContext = React.createContext({
       }
     ]
   },
-  currentWeatherDay: -1,
+  currentWeatherDay: null,
   addWeather: (weather) => {},
   changeWeatherDay: (day) => {} 
 })

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import {useState} from 'react'
 import * as Font from 'expo-font'
 
 const useFonts = () => {
@@ -6,7 +6,8 @@ const useFonts = () => {
 
   Font.loadAsync({
     "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
-    "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf")
+    "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf")
   })
   .then(() => {
     setLoaded(true)
