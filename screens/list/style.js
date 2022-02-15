@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   title: {
     color: "#cfe5ff",
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "Poppins-Bold",
     marginBottom: 20
   },
   weatherList: {
@@ -40,10 +40,11 @@ export const styles = StyleSheet.create({
   weatherItemFirst: {
     fontSize: 14,
     color: "#cfe5ff",
-    fontWeight: "bold"
+    fontFamily: "Poppins-Bold"
   },
   weatherItemSecond: {
     fontSize: 14,
+    fontFamily: "Poppins-Regular",
     opacity: .8,
     color: "#cfe5ff",
     marginLeft: 5

@@ -93,7 +93,7 @@ const HomeScreen = ({ navigation }) => {
               </View>
 
               <ScrollView style={styles.bodyContainer}>
-                <Text style={{...styles.location, fontFamily: "Poppins-Black"}}>{ name }, <Text style={styles.country}>{ formatCountry(country) }</Text></Text>
+                <Text style={{...styles.location}}>{ name }, <Text style={styles.country}>{ formatCountry(country) }</Text></Text>
 
                 <View style={styles.weatherCard}>
                   <View style={styles.weatherCardTop}>
@@ -142,16 +142,17 @@ const HomeScreen = ({ navigation }) => {
 
                 <View style={styles.weatherList}>
                   <View style={styles.weatherListHeader}>
-                    <Text style={{ fontWeight: "bold" }}>{ formatDate(list[currentWeatherDay].date) }</Text>
+                    <Text style={{ fontFamily: "Poppins-Bold" }}>{ formatDate(list[currentWeatherDay].date) }</Text>
                     <View style={styles.weatherNext}>
                       <TouchableOpacity activeOpacity={.7} onPress={() => navigation.navigate("List")}>
-                        <Text style={{ color: "#6f6f6f", marginRight: 5 }}>{ list.slice(11).length } Jours Suivant</Text>
+                        <Text style={{ color: "#6f6f6f", marginRight: 5, fontFamily: "Poppins-Regular" }}>{ list.slice(11).length } Jours Suivant</Text>
                       </TouchableOpacity>
                       <Icon
                         name="chevron-forward"
                         type="ionicon"
                         color="#6f6f6f"
                         size={20}
+                        style={{ marginBottom: 3 }}
                       />
                     </View>
                   </View>

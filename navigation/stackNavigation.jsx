@@ -59,6 +59,9 @@ const AppStackNavigation = () => {
             headerStyle: {
               backgroundColor: "#6541ff"
             },
+            headerTitleStyle: {
+              fontFamily: "Poppins-Medium"
+            }
           }}
         />
         <Stack.Screen 

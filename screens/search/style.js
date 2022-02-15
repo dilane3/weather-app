@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 10,
     paddingRight: 45,
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: "Poppins-Regular"
   },
   searchBtn: {
     position: "absolute",
@@ -38,32 +39,34 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     paddingVertical: 20,
     paddingHorizontal: 10,
+    paddingBottom: 0,
     alignItems: "center",
     backgroundColor: "#6541ff",
   },
   location: {
     fontSize: 22,
-    fontWeight: "bold",
+    fontFamily: "Poppins-Bold",
     paddingHorizontal: 20,
     color: "#cfe5ff",
     textAlign: "center"
   },
   country: {
     fontSize: 16,
-    fontWeight: "500",
+    fontFamily: "Poppins-Regular",
     opacity: .8,
     color: "#cfe5ff",
   },
   weatherDate: {
     fontSize: 14,
+    fontFamily: "Poppins-Regular",
     color: "#fff",
     opacity: .7,
     marginTop: 5
   },
   weatherTemperature: {
     fontSize: 60,
+    fontFamily: "Poppins-Bold",
     color: "#feffff",
-    marginTop: 20
   },
   noResult: {
     width: Dimensions.get("screen").width - 40,
@@ -76,7 +79,8 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   noResultText: {
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: "Poppins-Regular"
   }
 })
 

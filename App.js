@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import useFonts from './utils/loadFonts';
+import useCustomFonts from './utils/loadFonts';
 import AppStackNavigation from './navigation/stackNavigation';
 import weatherContext from './data-manager/context/weatherContext'
 import networkContext from './data-manager/context/networkContext';
@@ -18,7 +18,7 @@ const initialState = {
 
 export default function App() {
   // load fonts
-  const [fontLoaded] = useFonts()
+  const [fontLoaded] = useCustomFonts()
 
   // definition of the state
   const [weather, dispatch] = useReducer(weatherReducer, initialState)
@@ -61,11 +61,8 @@ export default function App() {
   return (
     <networkContext.Provider value={networkContextValue}>
       <weatherContext.Provider value={weatherContextValue}>
-        {
-          fontLoaded ? (
-            <AppStackNavigation />
-          ):null
-        }
+        <AppStackNavigation />
+
         <StatusBar barStyle="light-content" />
       </weatherContext.Provider>
     </networkContext.Provider>

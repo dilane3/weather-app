@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 14,
-    fontFamily: "Poppins-Medium",
+    fontFamily: "Poppins-Bold",
     color: "#fff"
   }
 })

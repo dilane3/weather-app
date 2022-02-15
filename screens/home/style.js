@@ -24,11 +24,12 @@ export const styles = StyleSheet.create({
   },
   location: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "Poppins-Bold",
     paddingHorizontal: 20,
   },
   country: {
     fontSize: 14,
+    fontFamily: "Poppins-Regular",
     fontWeight: "500"
   },
   weatherCard: {
@@ -36,13 +37,14 @@ export const styles = StyleSheet.create({
     height: 350,
     borderRadius: 10,
     backgroundColor: "#6541ff",
-    marginTop: 20,
+    marginTop: 10,
     marginHorizontal: 20,
   },
   weatherCardTop: {
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     padding: 20,
+    paddingBottom: 0
   }, 
   weatherImage: {
     width: 50,
@@ -52,17 +54,19 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     color: "#cfe5ff",
     marginTop: 10,
-    fontWeight: "700"
+    fontFamily: "Poppins-Bold"
   },
   weatherDate: {
     fontSize: 12,
     color: "#fff",
     opacity: .7,
-    marginTop: 5
+    marginTop: 5,
+    fontFamily: "Poppins-Regular"
   },
   weatherTemperature: {
     fontSize: 60,
-    color: "#feffff"
+    color: "#feffff",
+    fontFamily: "Poppins-Bold"
   },
   weatherCardBottom: {
     flex: 1
@@ -87,12 +91,14 @@ export const styles = StyleSheet.create({
   },
   weatherItemType: {
     fontSize: 10,
+    fontFamily: "Poppins-Regular",
     color: "#fff",
     opacity: .7,
     lineHeight: 22
   },
   weatherItemValue: {
     fontSize: 10,
+    fontFamily: "Poppins-Regular",
     color: "#cfe5ff",
     lineHeight: 22
   }, 
@@ -111,7 +117,7 @@ export const styles = StyleSheet.create({
   },
   weatherNext: {
     flexDirection: "row",
-    alignItems: 'center'
+    alignItems: 'center',
   },
   weatherListItems: {
     width: Dimensions.get("screen").width,
@@ -129,6 +135,7 @@ export const styles = StyleSheet.create({
   },
   weatherTemperatureItemText: {
     fontSize: 12,
+    fontFamily: "Poppins-Regular",
     color: "#696969"
   },
   weatherTemperatureItemTextActive: {
