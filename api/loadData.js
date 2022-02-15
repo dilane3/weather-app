@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { API_URI, API_KEY } from '../utils/config'
 
 const instance = axios.create({
